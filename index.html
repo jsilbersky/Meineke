@@ -105,7 +105,7 @@ a{color:inherit;text-decoration:none}
   opacity:1;pointer-events:auto;
 }
 #nav-ticket:hover{background:var(--gb);transform:translateY(-2px);box-shadow:0 10px 30px rgba(191,154,90,.45)}
-/* gentle reminder –a thin ring flares out every few seconds, then idles */
+/* gentle reminder – a thin ring flares out every few seconds, then idles */
 #nav-ticket::after{
   content:'';position:absolute;inset:0;pointer-events:none;opacity:0;
   border:1px solid rgba(191,154,90,.7);
@@ -197,7 +197,7 @@ a{color:inherit;text-decoration:none}
 /* Dim FM button when menu is open to avoid overlap */
 #fm.is-open{opacity:.2;pointer-events:none}
 
-/* menu fits smaller laptops & short screens –scale with viewport height */
+/* menu fits smaller laptops & short screens – scale with viewport height */
 @media(max-height:780px){
   .menu-items{gap:clamp(.5rem,1.8vh,1.2rem)}
   .menu-items a{font-size:clamp(1.5rem,4.6vh,2.8rem)}
@@ -827,7 +827,7 @@ a{color:inherit;text-decoration:none}
 .tl-dot::before{content:'';position:absolute;inset:6px;left:6px;right:6px;top:6px;border-radius:3px;background:rgba(8,6,16,.08)}
 .tl-mid{display:flex;align-items:center;justify-content:center;position:relative;z-index:3}
 
-/* hide old per-event SVG visuals –using unified dot style instead */
+/* hide old per-event SVG visuals – using unified dot style instead */
 .tl-vis{display:none}
 
 /* make big year bg more present and animated */
@@ -855,7 +855,7 @@ section + section{margin-top:0}
 .gal-item.tall{grid-row:span 2}
 .gal-item.big{grid-column:span 2;grid-row:span 2}
 
-/* images –sharp corners, calm tone, gentle hover */
+/* images – sharp corners, calm tone, gentle hover */
 .gal-item{
   display:block;width:100%;height:100%;object-fit:cover;
   background:var(--k2);
@@ -865,7 +865,7 @@ section + section{margin-top:0}
 }
 .gal-item:hover{filter:brightness(1.06) saturate(1.02)}
 
-/* entrance –pieces drift into place when the section is scrolled in from above.
+/* entrance – pieces drift into place when the section is scrolled in from above.
    Only dim while JS is active so an image can never stay hidden. */
 html.galjs .gal-item{opacity:0;transform:translateY(28px) scale(1.05)}
 html.galjs .gal-item.wide{transform:translateX(-34px) scale(1.04)}
@@ -1430,12 +1430,12 @@ footer{
 .hero-body{max-width:min(60rem,92%)}
 .hero-eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .6rem}
 .hero-eyebrow svg{width:14px;height:14px;opacity:.9;flex-shrink:0}
-/* her name –the emotional emphasis */
+/* her name – the emotional emphasis */
 /* nav: transparent bar holding the Vstupenky CTA, pinned top-right */
 #nav{justify-content:flex-end;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 #nav.s{background:transparent!important;backdrop-filter:none!important}
 
-/* floating menu –appears once the user starts scrolling (keeps the hero clean) */
+/* floating menu – appears once the user starts scrolling (keeps the hero clean) */
 #fm{opacity:0;transform:translateY(18px) scale(.96);pointer-events:none;
   transition:opacity .5s ease,transform .55s cubic-bezier(.16,1,.3,1),background .22s,color .22s,border-color .22s,box-shadow .22s}
 #fm.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
@@ -1469,7 +1469,7 @@ footer{
 .hm-btn{display:inline-flex;align-items:center;gap:.6rem}
 .hm-btn svg{width:13px;height:13px}
 
-/* ───────── PAINTING BAND –full-bleed engraving, text inside ───────── */
+/* ───────── PAINTING BAND – full-bleed engraving, text inside ───────── */
 .paint-band{position:relative;min-height:106vh;display:flex;align-items:center;overflow:hidden;background:var(--k)}
 .paint-bg{position:absolute;inset:-8% 0;z-index:0;overflow:hidden}
 .paint-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 44%;
@@ -1554,7 +1554,7 @@ footer{
 .tl2-media .framed{width:min(100%,22rem)}
 .tl2-imgbox{position:relative;aspect-ratio:4/5;overflow:hidden}
 .tl2-row:nth-child(even) .tl2-media .framed{margin-left:0}
-/* interlude –a centred "station" that masks the spine */
+/* interlude – a centred "station" that masks the spine */
 .tl2-interlude{position:relative;z-index:2;text-align:center;max-width:42rem;
   margin:clamp(1rem,3vw,2.5rem) auto;padding:clamp(2rem,4vw,3rem) clamp(1.5rem,4vw,3rem);
   background:var(--k2);border:1px solid var(--gd);
@@ -1628,11 +1628,11 @@ footer{
      RESPONSIVE AUDIT  ·  appended last so these rules
      win at equal specificity. Goal: nothing breaks at
      any width, text stays readable, photos stay visible
-     and correctly framed –including gradual resizing.
+     and correctly framed – including gradual resizing.
 ═══════════════════════════════════════════════ -->
 <style id="rwd-audit">
 
-/* Safety net –a long word / URL can never force a horizontal
+/* Safety net – a long word / URL can never force a horizontal
    scrollbar or get clipped by the page's overflow-x:hidden */
 body{overflow-wrap:break-word}
 /* …but large display type should shrink-to-fit, never hyphenate */
@@ -1682,7 +1682,7 @@ img,iframe,svg,video{max-width:100%}
   .paint-band{min-height:66svh}
 
   /* the vertical "Scroll" hint can crowd the hero text on a narrow
-     screen –the page scrolls fine without it here */
+     screen – the page scrolls fine without it here */
   .hero-sc{display:none}
 
   /* float menu a little tighter into the corner */
@@ -1709,8 +1709,8 @@ img,iframe,svg,video{max-width:100%}
 <!-- ═══════════════════════════════════════════════
      LEGIBILITY PASS  ·  appended last so these rules
      win at equal specificity. Goal: every piece of small
-     type –hero, ticker, info bands, labels, captions,
-     footer fine-print –sits at a readable floor with
+     type – hero, ticker, info bands, labels, captions,
+     footer fine-print – sits at a readable floor with
      enough weight to hold up on the dark background.
      Originals above are left intact for easy review.
 ═══════════════════════════════════════════════ -->
@@ -1720,8 +1720,8 @@ img,iframe,svg,video{max-width:100%}
    long-form text never thins out on the near-black ground. */
 :root{
   --bd:clamp(.95rem,1.35vw,1.05rem);
-  --pm:#BCB2A0;   /* muted text –slightly brighter for contrast */
-  --pd:#8C8376;   /* dimmest text (fine print) –lifted off black */
+  --pm:#BCB2A0;   /* muted text – slightly brighter for contrast */
+  --pd:#8C8376;   /* dimmest text (fine print) – lifted off black */
 }
 body{font-weight:400}
 
@@ -1747,7 +1747,7 @@ body{font-weight:400}
   font-size:.72rem;font-weight:600;
 }
 
-/* Secondary labels –a hair smaller but still legible + bolder. */
+/* Secondary labels – a hair smaller but still legible + bolder. */
 .menu-info,
 .hero-sc span,
 .story-pull-attr,
@@ -1762,7 +1762,7 @@ body{font-weight:400}
 .tl2-place{font-size:.66rem;font-weight:600}
 .ticker-item{font-size:.72rem;font-weight:600}
 
-/* Buttons / CTAs –already bold, just nudged up. */
+/* Buttons / CTAs – already bold, just nudged up. */
 #nav-ticket,#fm,.hm-btn,.playlist-btn,.atelier-link{font-size:.72rem}
 .menu-cta,.ticket-cta,.footer-cta-btn{font-size:.76rem}
 #lb-close{font-size:.68rem}
@@ -1920,7 +1920,7 @@ body{font-weight:400}
 .stage-lb-nav button:hover{color:var(--g)}
 
 @media(max-width:700px){
-  /* malé nenápadné zlaté šipky po stranách –navigace na dotyk */
+  /* malé nenápadné zlaté šipky po stranách – navigace na dotyk */
   .stage-arrow{
     display:flex;top:50%;bottom:auto;transform:translateY(-50%);
     width:auto;padding:.5rem .35rem;
@@ -2169,7 +2169,7 @@ body{font-weight:400}
 
 
 <!-- ═════════════════════════════════════════
-     NA JEVIŠTI –cinematic performance reel
+     NA JEVIŠTI – cinematic performance reel
 ═════════════════════════════════════════ -->
 <section id="najevisti" aria-labelledby="najevisti-h">
   <div class="w stage-head">
@@ -2186,47 +2186,47 @@ body{font-weight:400}
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1391.jpg" alt="Scéna z muzikálu –dvojice zády k sobě v modrém světle">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1391.jpg" alt="Scéna z muzikálu – dvojice zády k sobě v modrém světle">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1444.jpg" alt="Scéna z muzikálu –objetí a útěcha, dvě postavy v šeru">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1444.jpg" alt="Scéna z muzikálu – objetí a útěcha, dvě postavy v šeru">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A9942.jpg" alt="Scéna z muzikálu –dvě postavy v červeném nasvícení">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A9942.jpg" alt="Scéna z muzikálu – dvě postavy v červeném nasvícení">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1371.jpg" alt="Scéna z muzikálu –tři postavy v dobových kostýmech při setkání">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1371.jpg" alt="Scéna z muzikálu – tři postavy v dobových kostýmech při setkání">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1483.jpg" alt="Scéna z muzikálu –muž v uniformě v dojemném výstupu">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1483.jpg" alt="Scéna z muzikálu – muž v uniformě v dojemném výstupu">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1453.jpg" alt="Scéna z muzikálu –žena v červeném, výjev jako z filmového noiru">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1453.jpg" alt="Scéna z muzikálu – žena v červeném, výjev jako z filmového noiru">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1399.jpg" alt="Scéna z muzikálu –naléhavý výstup dvojice v bílém">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1399.jpg" alt="Scéna z muzikálu – naléhavý výstup dvojice v bílém">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1479.jpg" alt="Scéna z muzikálu –žena s rekvizitou v zeleném světle a kuželu reflektoru">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1479.jpg" alt="Scéna z muzikálu – žena s rekvizitou v zeleném světle a kuželu reflektoru">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A3860.jpg" alt="Scéna z muzikálu –trojice se smíchem a dopisem">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A3860.jpg" alt="Scéna z muzikálu – trojice se smíchem a dopisem">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1508.jpg" alt="Scéna z muzikálu –něžný pohled dvojice zblízka">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1508.jpg" alt="Scéna z muzikálu – něžný pohled dvojice zblízka">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A4297.jpg" alt="Scéna z muzikálu –dvě ženy proti sobě na scéně s okvětními lístky">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A4297.jpg" alt="Scéna z muzikálu – dvě ženy proti sobě na scéně s okvětními lístky">
       </figure>
 
     </div>
@@ -2652,7 +2652,7 @@ body{font-weight:400}
     <div class="tl2">
       <div class="tl2-spine" aria-hidden="true"><div class="tl2-spine-fill"></div></div>
 
-      <!-- 1768 –narození -->
+      <!-- 1768 – narození -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">1768</div>
         <div class="tl2-card fu">
@@ -2670,7 +2670,7 @@ body{font-weight:400}
         </div>
       </div>
 
-      <!-- 1790 –setkání -->
+      <!-- 1790 – setkání -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">1790</div>
         <div class="tl2-card fu">
@@ -2682,13 +2682,13 @@ body{font-weight:400}
         <div class="tl2-node" aria-hidden="true"><div class="tl2-dot"></div></div>
         <div class="tl2-media">
           <figure class="framed cb">
-            <div class="tl2-imgbox duo"><img src="images/Karolina%20Meineke/Arthur_v._Ramberg_-_Caroline_und_der_Prinz_im_Park_von_Pyrmont.jpg" alt="Caroline a princ v parku v Pyrmontu –rytina Arthura von Ramberg"></div>
+            <div class="tl2-imgbox duo"><img src="images/Karolina%20Meineke/Arthur_v._Ramberg_-_Caroline_und_der_Prinz_im_Park_von_Pyrmont.jpg" alt="Caroline a princ v parku v Pyrmontu – rytina Arthura von Ramberg"></div>
           </figure>
-          <p class="cap"><b>A. v. Ramberg</b> –Caroline a princ v parku v Pyrmontu</p>
+          <p class="cap"><b>A. v. Ramberg</b> – Caroline a princ v parku v Pyrmontu</p>
         </div>
       </div>
 
-      <!-- 1791 –tajný sňatek -->
+      <!-- 1791 – tajný sňatek -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">1791</div>
         <div class="tl2-card fu">
@@ -2713,7 +2713,7 @@ body{font-weight:400}
         <div class="tl2-card fu">
           <p class="tl2-yr">Nový začátek</p>
           <p class="tl2-place">Berlín → Morava</p>
-          <h3 class="tl2-name">Z von Linsingen –Karolina Meineke</h3>
+          <h3 class="tl2-name">Z von Linsingen – Karolina Meineke</h3>
           <p class="tl2-desc">Po čase se Karolina provdala za lékaře Adolfa Meineke a přijala jméno, pod nímž ji bude znát Morava. Začíná druhý život – tišší, ale svobodnější než ten u dvora.</p>
         </div>
         <div class="tl2-node" aria-hidden="true"><div class="tl2-dot"></div></div>
@@ -2721,7 +2721,7 @@ body{font-weight:400}
           <figure class="framed cb">
             <div class="tl2-imgbox duo"><img src="images/Karolina%20Meineke/Adolf%20Meineke.jpg" alt="Dobový portrét Adolfa Meineke"></div>
           </figure>
-          <p class="cap"><b>Adolf Meineke</b> –Karolinin manžel</p>
+          <p class="cap"><b>Adolf Meineke</b> – Karolinin manžel</p>
         </div>
       </div>
 
@@ -2733,7 +2733,7 @@ body{font-weight:400}
         <p class="tl2-desc">Rodina zakotvila na jižní Moravě. Karolinina dcera Henrietta se provdala za Carla Teubnera, správce blanenských železáren. V kraji uprostřed lesů mohla být konečně prostě člověkem – ne utajovaným tajemstvím koruny.</p>
       </div>
 
-      <!-- 1815 –smrt -->
+      <!-- 1815 – smrt -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">1815</div>
         <div class="tl2-card fu">
@@ -2755,7 +2755,7 @@ body{font-weight:400}
         </div>
       </div>
 
-      <!-- 2026 –návrat -->
+      <!-- 2026 – návrat -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">2026</div>
         <div class="tl2-card fu">
@@ -2902,7 +2902,7 @@ body{font-weight:400}
           <li><a href="https://df.jamu.cz/" target="_blank">DF JAMU Brno</a></li>
           <li><a href="https://www.instagram.com/divadlonaorli/" target="_blank">Instagram</a></li>
           <li><a href="https://www.facebook.com/DivadloNaOrli/" target="_blank">Facebook</a></li>
-          <li><a href="https://goout.net/cs/pribeh-utajene-kralovny/ezqadri/" target="_blank">GoOut –Vstupenky</a></li>
+          <li><a href="https://goout.net/cs/pribeh-utajene-kralovny/ezqadri/" target="_blank">GoOut – Vstupenky</a></li>
         </ul>
       </div>
     </div>
@@ -3122,7 +3122,7 @@ window.addEventListener('load',()=>{
   });
 })();
 
-/* ── NA JEVIŠTI –cinematic reel (active-centering · drag · lightbox) ── */
+/* ── NA JEVIŠTI – cinematic reel (active-centering · drag · lightbox) ── */
 (function(){
   const reel=document.getElementById('najevisti');
   if(!reel) return;
@@ -3168,7 +3168,7 @@ window.addEventListener('load',()=>{
   if(prevBtn) prevBtn.addEventListener('click',()=>step(-1));
   if(nextBtn) nextBtn.addEventListener('click',()=>step(1));
 
-  /* drag-to-scroll (pointer) –suppress the click that follows a real drag */
+  /* drag-to-scroll (pointer) – suppress the click that follows a real drag */
   let down=false,moved=false,sx=0,sl=0;
   track.addEventListener('pointerdown',e=>{
     if(e.pointerType==='mouse'&&e.button!==0) return;
