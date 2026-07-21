@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Příběh utajené královny: muzikál, Karolína Meineke, Brno</title>
 <meta name="description" content="Muzikál o Karolíně Meineke, tajné manželce krále Viléma IV., která svůj osud dožila na Moravě. Od září 2026, Divadlo na Orlí, Brno.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
@@ -97,11 +98,14 @@ a{color:inherit;text-decoration:none}
   letter-spacing:.26em;text-transform:uppercase;
   padding:.8em 1.9em;cursor:pointer;
   box-shadow:0 6px 24px rgba(191,154,90,.3);
-  transition:background .22s,transform .22s,box-shadow .22s;
-  opacity:0;animation:fadein .8s ease .8s forwards;
+  transition:background .22s,transform .22s,box-shadow .22s,opacity .5s ease;
+  opacity:0;pointer-events:none;
+}
+#nav-ticket.show{
+  opacity:1;pointer-events:auto;
 }
 #nav-ticket:hover{background:var(--gb);transform:translateY(-2px);box-shadow:0 10px 30px rgba(191,154,90,.45)}
-/* gentle reminder — a thin ring flares out every few seconds, then idles */
+/* gentle reminder –a thin ring flares out every few seconds, then idles */
 #nav-ticket::after{
   content:'';position:absolute;inset:0;pointer-events:none;opacity:0;
   border:1px solid rgba(191,154,90,.7);
@@ -182,7 +186,7 @@ a{color:inherit;text-decoration:none}
 .menu-cta:hover{background:var(--gb)}
 
 .menu-info{
-  position:absolute;bottom:2rem;left:0;right:0;
+  position:absolute;bottom:5rem;left:0;right:0;
   display:flex;justify-content:center;
   font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--pd);
   transform:translateY(20px);opacity:0;
@@ -190,7 +194,10 @@ a{color:inherit;text-decoration:none}
 }
 #menu.open .menu-info{transform:translateY(0);opacity:1}
 
-/* menu fits smaller laptops & short screens — scale with viewport height */
+/* Dim FM button when menu is open to avoid overlap */
+#fm.is-open{opacity:.2;pointer-events:none}
+
+/* menu fits smaller laptops & short screens –scale with viewport height */
 @media(max-height:780px){
   .menu-items{gap:clamp(.5rem,1.8vh,1.2rem)}
   .menu-items a{font-size:clamp(1.5rem,4.6vh,2.8rem)}
@@ -820,7 +827,7 @@ a{color:inherit;text-decoration:none}
 .tl-dot::before{content:'';position:absolute;inset:6px;left:6px;right:6px;top:6px;border-radius:3px;background:rgba(8,6,16,.08)}
 .tl-mid{display:flex;align-items:center;justify-content:center;position:relative;z-index:3}
 
-/* hide old per-event SVG visuals — using unified dot style instead */
+/* hide old per-event SVG visuals –using unified dot style instead */
 .tl-vis{display:none}
 
 /* make big year bg more present and animated */
@@ -848,7 +855,7 @@ section + section{margin-top:0}
 .gal-item.tall{grid-row:span 2}
 .gal-item.big{grid-column:span 2;grid-row:span 2}
 
-/* images — sharp corners, calm tone, gentle hover */
+/* images –sharp corners, calm tone, gentle hover */
 .gal-item{
   display:block;width:100%;height:100%;object-fit:cover;
   background:var(--k2);
@@ -858,7 +865,7 @@ section + section{margin-top:0}
 }
 .gal-item:hover{filter:brightness(1.06) saturate(1.02)}
 
-/* entrance — pieces drift into place when the section is scrolled in from above.
+/* entrance –pieces drift into place when the section is scrolled in from above.
    Only dim while JS is active so an image can never stay hidden. */
 html.galjs .gal-item{opacity:0;transform:translateY(28px) scale(1.05)}
 html.galjs .gal-item.wide{transform:translateX(-34px) scale(1.04)}
@@ -1040,6 +1047,7 @@ html.galjs #galerie.in-view .gal-item:nth-child(n+13){transition-delay:.6s}
   opacity:0;transform:scale(.9) translateY(24px);
   transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);
   min-width:0;
+  z-index:1001;
 }
 /* Stagger by index */
 .cast-card.in{opacity:1;transform:scale(1) translateY(0)}
@@ -1184,12 +1192,16 @@ html.galjs #galerie.in-view .gal-item:nth-child(n+13){transition-delay:.6s}
   border:1px solid var(--gd);
 }
 .art-card{
-  background:var(--k);padding:2rem 1.75rem;
+  background:var(--k);
   border-bottom:2px solid transparent;
   transition:border-color .3s,transform .35s ease;
   position:relative;
 }
 .art-card:hover{border-color:var(--g);transform:translateY(-3px)}
+.art-link{
+  display:block;padding:2rem 1.75rem;
+  color:inherit;text-decoration:none;
+}
 .art-tag{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--g);margin-bottom:.9rem}
 .art-title{
   font-family:var(--fd);font-size:clamp(1.1rem,2vw,1.4rem);
@@ -1201,7 +1213,7 @@ html.galjs #galerie.in-view .gal-item:nth-child(n+13){transition-delay:.6s}
   font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);
   transition:gap .22s;
 }
-.art-more:hover{gap:.7rem}
+.art-link:hover .art-more{gap:.7rem}
 
 .art-empty{
   background:var(--k);
@@ -1418,12 +1430,12 @@ footer{
 .hero-body{max-width:min(60rem,92%)}
 .hero-eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .6rem}
 .hero-eyebrow svg{width:14px;height:14px;opacity:.9;flex-shrink:0}
-/* her name — the emotional emphasis */
+/* her name –the emotional emphasis */
 /* nav: transparent bar holding the Vstupenky CTA, pinned top-right */
 #nav{justify-content:flex-end;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 #nav.s{background:transparent!important;backdrop-filter:none!important}
 
-/* floating menu — appears once the user starts scrolling (keeps the hero clean) */
+/* floating menu –appears once the user starts scrolling (keeps the hero clean) */
 #fm{opacity:0;transform:translateY(18px) scale(.96);pointer-events:none;
   transition:opacity .5s ease,transform .55s cubic-bezier(.16,1,.3,1),background .22s,color .22s,border-color .22s,box-shadow .22s}
 #fm.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
@@ -1456,18 +1468,8 @@ footer{
 .hm-stat svg{width:11px;height:11px}
 .hm-btn{display:inline-flex;align-items:center;gap:.6rem}
 .hm-btn svg{width:13px;height:13px}
-/* floating petals */
-.hero-petals{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.petal{position:absolute;top:-6vh;border-radius:0 100% 0 100%;
-  opacity:0;will-change:transform,opacity;filter:blur(.2px)}
-@keyframes petalFall{
-  0%{transform:translateY(-8vh) translateX(0) rotate(0);opacity:0}
-  8%{opacity:.85}
-  92%{opacity:.5}
-  100%{transform:translateY(112vh) translateX(var(--dx,40px)) rotate(540deg);opacity:0}
-}
 
-/* ───────── PAINTING BAND — full-bleed engraving, text inside ───────── */
+/* ───────── PAINTING BAND –full-bleed engraving, text inside ───────── */
 .paint-band{position:relative;min-height:106vh;display:flex;align-items:center;overflow:hidden;background:var(--k)}
 .paint-bg{position:absolute;inset:-8% 0;z-index:0;overflow:hidden}
 .paint-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 44%;
@@ -1552,7 +1554,7 @@ footer{
 .tl2-media .framed{width:min(100%,22rem)}
 .tl2-imgbox{position:relative;aspect-ratio:4/5;overflow:hidden}
 .tl2-row:nth-child(even) .tl2-media .framed{margin-left:0}
-/* interlude — a centred "station" that masks the spine */
+/* interlude –a centred "station" that masks the spine */
 .tl2-interlude{position:relative;z-index:2;text-align:center;max-width:42rem;
   margin:clamp(1rem,3vw,2.5rem) auto;padding:clamp(2rem,4vw,3rem) clamp(1.5rem,4vw,3rem);
   background:var(--k2);border:1px solid var(--gd);
@@ -1617,7 +1619,6 @@ footer{
 }
 @media(prefers-reduced-motion:reduce){
   .hero-img{animation:none;clip-path:none}
-  .petal{display:none}
   .tl2-spine-fill{transform:scaleY(1)}
 }
 
@@ -1627,11 +1628,11 @@ footer{
      RESPONSIVE AUDIT  ·  appended last so these rules
      win at equal specificity. Goal: nothing breaks at
      any width, text stays readable, photos stay visible
-     and correctly framed — including gradual resizing.
+     and correctly framed –including gradual resizing.
 ═══════════════════════════════════════════════ -->
 <style id="rwd-audit">
 
-/* Safety net — a long word / URL can never force a horizontal
+/* Safety net –a long word / URL can never force a horizontal
    scrollbar or get clipped by the page's overflow-x:hidden */
 body{overflow-wrap:break-word}
 /* …but large display type should shrink-to-fit, never hyphenate */
@@ -1649,7 +1650,7 @@ img,iframe,svg,video{max-width:100%}
 
 /* ───────── Tablet (≤880) ───────── */
 @media(max-width:880px){
-  /* 3 generous columns read better — and show the photos larger —
+  /* 3 generous columns read better – and show the photos larger –
      than 4 cramped ones at this width */
   .gal-grid{
     grid-template-columns:repeat(3,minmax(0,1fr));
@@ -1681,7 +1682,7 @@ img,iframe,svg,video{max-width:100%}
   .paint-band{min-height:66svh}
 
   /* the vertical "Scroll" hint can crowd the hero text on a narrow
-     screen — the page scrolls fine without it here */
+     screen –the page scrolls fine without it here */
   .hero-sc{display:none}
 
   /* float menu a little tighter into the corner */
@@ -1708,8 +1709,8 @@ img,iframe,svg,video{max-width:100%}
 <!-- ═══════════════════════════════════════════════
      LEGIBILITY PASS  ·  appended last so these rules
      win at equal specificity. Goal: every piece of small
-     type — hero, ticker, info bands, labels, captions,
-     footer fine-print — sits at a readable floor with
+     type –hero, ticker, info bands, labels, captions,
+     footer fine-print –sits at a readable floor with
      enough weight to hold up on the dark background.
      Originals above are left intact for easy review.
 ═══════════════════════════════════════════════ -->
@@ -1719,8 +1720,8 @@ img,iframe,svg,video{max-width:100%}
    long-form text never thins out on the near-black ground. */
 :root{
   --bd:clamp(.95rem,1.35vw,1.05rem);
-  --pm:#BCB2A0;   /* muted text — slightly brighter for contrast */
-  --pd:#8C8376;   /* dimmest text (fine print) — lifted off black */
+  --pm:#BCB2A0;   /* muted text –slightly brighter for contrast */
+  --pd:#8C8376;   /* dimmest text (fine print) –lifted off black */
 }
 body{font-weight:400}
 
@@ -1746,7 +1747,7 @@ body{font-weight:400}
   font-size:.72rem;font-weight:600;
 }
 
-/* Secondary labels — a hair smaller but still legible + bolder. */
+/* Secondary labels –a hair smaller but still legible + bolder. */
 .menu-info,
 .hero-sc span,
 .story-pull-attr,
@@ -1761,7 +1762,7 @@ body{font-weight:400}
 .tl2-place{font-size:.66rem;font-weight:600}
 .ticker-item{font-size:.72rem;font-weight:600}
 
-/* Buttons / CTAs — already bold, just nudged up. */
+/* Buttons / CTAs –already bold, just nudged up. */
 #nav-ticket,#fm,.hm-btn,.playlist-btn,.atelier-link{font-size:.72rem}
 .menu-cta,.ticket-cta,.footer-cta-btn{font-size:.76rem}
 #lb-close{font-size:.68rem}
@@ -1919,7 +1920,7 @@ body{font-weight:400}
 .stage-lb-nav button:hover{color:var(--g)}
 
 @media(max-width:700px){
-  /* malé nenápadné zlaté šipky po stranách — navigace na dotyk */
+  /* malé nenápadné zlaté šipky po stranách –navigace na dotyk */
   .stage-arrow{
     display:flex;top:50%;bottom:auto;transform:translateY(-50%);
     width:auto;padding:.5rem .35rem;
@@ -1970,11 +1971,10 @@ body{font-weight:400}
     <li><a href="#najevisti" onclick="closeMenu()">Na jevišti</a></li>
     <li><a href="#hudba"     onclick="closeMenu()">Hudba</a></li>
     <li><a href="#autor"    onclick="closeMenu()">Tvůrci</a></li>
-    <li><a href="#timeline" onclick="closeMenu()">Životní osudy</a></li>
+    <li><a href="#timeline" onclick="closeMenu()">Časová osa</a></li>
     <li><a href="#clanky"   onclick="closeMenu()">Články</a></li>
   </ul>
   <a href="https://goout.net/cs/pribeh-utajene-kralovny/ezqadri/" target="_blank" class="menu-cta" onclick="closeMenu()">Koupit vstupenky</a>
-  <p class="menu-info">Divadlo na Orlí · Brno · 2026</p>
 </div>
 
 
@@ -1989,9 +1989,6 @@ body{font-weight:400}
     <div class="hero-scrim"></div>
   </div>
 
-  <!-- drifting petals (filled by JS) -->
-  <div class="hero-petals" aria-hidden="true"></div>
-
   <div class="hero-body">
     <p class="hero-eyebrow">
       Aleš Kohout
@@ -2005,11 +2002,6 @@ body{font-weight:400}
     <div class="hero-sep"></div>
     <p class="hero-name">Karolina Meineke</p>
     <p class="hero-sub">1768 – 1815 · <b>tajná manželka britského krále Viléma IV.</b></p>
-  </div>
-
-  <div class="hero-sc" aria-hidden="true">
-    <div class="hero-sc-bar"></div>
-    <span>Scroll</span>
   </div>
 </section>
 
@@ -2134,13 +2126,13 @@ body{font-weight:400}
           <span class="lr"><span class="li d2"><em>Pohřbená dějinami.</em></span></span>
           <span class="lr"><span class="li d3">Navrácená muzikálem.</span></span>
         </div>
-        <span class="story-pull-attr fu" style="transition-delay:.5s">Karolina Meineke · 1768–1815</span>
+        <span class="story-pull-attr fu" style="transition-delay:.5s">Karolina Meineke · 1768 – 1815</span>
       </div>
 
       <div class="story-text">
         <p class="sec-lbl fu">Synopsis</p>
         <p class="fu d1" id="pribeh-h">
-          Příběh muzikálu je inspirován osudem <strong>Karoliny Meineke</strong>, rozené von Linsingen — tajné manželky britského krále Viléma IV., jejíž život byl v důsledku politických a mocenských rozhodnutí systematicky vytěsněn z oficiálních dějin.
+          Příběh muzikálu je inspirován osudem <strong>Karoliny Meineke</strong>, rozené von Linsingen – tajné manželky britského krále Viléma IV., jejíž život byl v důsledku politických a mocenských rozhodnutí systematicky vytěsněn z oficiálních dějin.
         </p>
         <p class="fu d2">
           Téma má výrazný regionální přesah: životní příběh Karoliny je úzce spjat s jihomoravským městem <strong>Blansko</strong>, kde část svého života prožila a kde také zemřela. Inscenace propojuje evropský historický kontext s konkrétním místem v České republice a pokouší se vrátit do kulturní paměti osobnost, která je s tímto regionem přímo spojena.
@@ -2169,7 +2161,7 @@ body{font-weight:400}
   <div class="paint-inner">
     <div class="paint-quote">
       <p class="tag">Pyrmont · 1791</p>
-      <blockquote>Láska, kterou koruna <em>nesměla uznat</em> — a přesto ji dějiny nedokázaly umlčet.</blockquote>
+      <blockquote>Láska, kterou koruna <em>nesměla uznat</em> – a přesto ji dějiny nedokázaly umlčet.</blockquote>
       <p class="fu d1">Mladá Karolina von Linsingen a princ Vilém, vévoda z Clarence, syn britského krále Jiřího III. Tajná svatba v lesní kapli u Pyrmontu se stala začátkem osudu, který anglický dvůr na dvě století pohřbil.</p>
     </div>
   </div>
@@ -2177,7 +2169,7 @@ body{font-weight:400}
 
 
 <!-- ═════════════════════════════════════════
-     NA JEVIŠTI — cinematic performance reel
+     NA JEVIŠTI –cinematic performance reel
 ═════════════════════════════════════════ -->
 <section id="najevisti" aria-labelledby="najevisti-h">
   <div class="w stage-head">
@@ -2190,51 +2182,51 @@ body{font-weight:400}
     <div class="stage-track" id="stageTrack">
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A9935.jpg" alt="Scéna z muzikálu — tanec pod křišťálovým lustrem, žena sama uprostřed">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A9935.jpg" alt="Scéna z muzikálu – tanec pod křišťálovým lustrem, žena sama uprostřed">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1391.jpg" alt="Scéna z muzikálu — dvojice zády k sobě v modrém světle">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1391.jpg" alt="Scéna z muzikálu –dvojice zády k sobě v modrém světle">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1444.jpg" alt="Scéna z muzikálu — objetí a útěcha, dvě postavy v šeru">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1444.jpg" alt="Scéna z muzikálu –objetí a útěcha, dvě postavy v šeru">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A9942.jpg" alt="Scéna z muzikálu — dvě postavy v červeném nasvícení">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A9942.jpg" alt="Scéna z muzikálu –dvě postavy v červeném nasvícení">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1371.jpg" alt="Scéna z muzikálu — tři postavy v dobových kostýmech při setkání">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1371.jpg" alt="Scéna z muzikálu –tři postavy v dobových kostýmech při setkání">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1483.jpg" alt="Scéna z muzikálu — muž v uniformě v dojemném výstupu">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1483.jpg" alt="Scéna z muzikálu –muž v uniformě v dojemném výstupu">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1453.jpg" alt="Scéna z muzikálu — žena v červeném, výjev jako z filmového noiru">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1453.jpg" alt="Scéna z muzikálu –žena v červeném, výjev jako z filmového noiru">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1399.jpg" alt="Scéna z muzikálu — naléhavý výstup dvojice v bílém">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1399.jpg" alt="Scéna z muzikálu –naléhavý výstup dvojice v bílém">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1479.jpg" alt="Scéna z muzikálu — žena s rekvizitou v zeleném světle a kuželu reflektoru">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1479.jpg" alt="Scéna z muzikálu –žena s rekvizitou v zeleném světle a kuželu reflektoru">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A3860.jpg" alt="Scéna z muzikálu — trojice se smíchem a dopisem">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A3860.jpg" alt="Scéna z muzikálu –trojice se smíchem a dopisem">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1508.jpg" alt="Scéna z muzikálu — něžný pohled dvojice zblízka">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/6X3A1508.jpg" alt="Scéna z muzikálu –něžný pohled dvojice zblízka">
       </figure>
 
       <figure class="stage-slide" tabindex="0" role="button" aria-label="Zvětšit fotografii z představení">
-        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A4297.jpg" alt="Scéna z muzikálu — dvě ženy proti sobě na scéně s okvětními lístky">
+        <img loading="lazy" decoding="async" width="1786" height="1191" src="images/na%20web/5Y4A4297.jpg" alt="Scéna z muzikálu –dvě ženy proti sobě na scéně s okvětními lístky">
       </figure>
 
     </div>
@@ -2530,7 +2522,7 @@ body{font-weight:400}
     </div>
 
     <div class="cast-card">
-      <img loading="lazy" class="cast-photo" src="images/obsazení/Matyas.webp" alt="Matyáš Kyncl">
+      <img loading="lazy" class="cast-photo" src="images/obsazení/Matyas.jpg" alt="Matyáš Kyncl">
       <div class="cast-bg" style="background:linear-gradient(155deg,#0e1a1a,#10302e,#0c1616)"></div>
       <div class="cast-initial-big" aria-hidden="true">M.K.</div>
       <svg class="cast-sil" viewBox="0 0 70 150" fill="white" aria-hidden="true"><ellipse cx="35" cy="24" rx="16" ry="19"/><path d="M19 43 Q35 62 51 43 L48 140 L22 140 Z"/></svg>
@@ -2556,7 +2548,7 @@ body{font-weight:400}
     </div>
 
     <div class="cast-card">
-      <img loading="lazy" class="cast-photo" src="images/obsazení/Natalia.webp" alt="Natália Klotková">
+      <img loading="lazy" class="cast-photo" src="images/obsazení/Natalia.jpg" alt="Natália Klotková">
       <div class="cast-bg" style="background:linear-gradient(155deg,#180e1e,#2e1440,#141018)"></div>
       <div class="cast-initial-big" aria-hidden="true">N.K.</div>
       <svg class="cast-sil" viewBox="0 0 70 150" fill="white" aria-hidden="true"><ellipse cx="35" cy="26" rx="17" ry="20"/><path d="M18 46 Q35 68 52 46 L49 142 L21 142 Z"/></svg>
@@ -2595,7 +2587,7 @@ body{font-weight:400}
     </div>
 
     <div class="cast-card">
-      <img loading="lazy" class="cast-photo" src="images/obsazení/Katerina.webp" alt="Kateřina Michková">
+      <img loading="lazy" class="cast-photo" src="images/obsazení/Katerina.jpg" alt="Kateřina Michková">
       <div class="cast-bg" style="background:linear-gradient(155deg,#141018,#20182a,#100e16)"></div>
       <div class="cast-initial-big" aria-hidden="true">K.M.</div>
       <svg class="cast-sil" viewBox="0 0 70 150" fill="white" aria-hidden="true"><ellipse cx="35" cy="26" rx="17" ry="20"/><path d="M18 46 Q35 68 52 46 L49 142 L21 142 Z"/></svg>
@@ -2649,36 +2641,36 @@ body{font-weight:400}
   <div class="w">
     <div class="tl-head">
       <div class="crown-orn fu" aria-hidden="true"><svg viewBox="0 0 64 36" fill="var(--g)"><path d="M4 30l6-20 11 12 11-16 11 16 11-12 6 20z" opacity=".9"/><rect x="4" y="30" width="56" height="4"/><circle cx="10" cy="8" r="2.4"/><circle cx="32" cy="3" r="2.6"/><circle cx="54" cy="8" r="2.4"/></svg></div>
-      <p class="sec-lbl fu">Životní osudy · 1768–1815</p>
+      <p class="sec-lbl fu">Časová osa · 1768 – 1815</p>
       <div class="tl-head-title">
         <span class="lr"><span class="li" id="timeline-h">Osud <em>skryté</em></span></span>
         <span class="lr"><span class="li d1">královny</span></span>
       </div>
-      <p class="fu d2" style="margin-top:1.4rem;max-width:35rem;color:var(--pm);font-size:.9rem;line-height:1.75">Sedm okamžiků — od narození v Hannoversku až po hrob v Blansku, kde dodnes stojí náhrobek s nápisem <em style="color:var(--g);font-family:var(--fd)">„první žena anglického krále Viléma IV.“</em></p>
+      <p class=”fu d2” style=”margin-top:1.4rem;max-width:35rem;color:var(--pm);font-size:.9rem;line-height:1.75”>Sedm okamžiků – od narození v Hannoversku až po hrob v Blansku, kde dodnes stojí náhrobek s nápisem <em style=”color:var(--g);font-family:var(--fd)”>„první žena anglického krále Viléma IV.”</em></p>
     </div>
 
     <div class="tl2">
       <div class="tl2-spine" aria-hidden="true"><div class="tl2-spine-fill"></div></div>
 
-      <!-- 1768 — narození -->
+      <!-- 1768 –narození -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">1768</div>
         <div class="tl2-card fu">
           <p class="tl2-yr">1768</p>
           <p class="tl2-place">Hildesheim · Hannoversko</p>
           <h3 class="tl2-name">Narození Karoliny von Linsingen</h3>
-          <p class="tl2-desc">Přišla na svět 27. listopadu 1768 jako dcera hannoverského generála von Linsingen. Vyrůstala ve světě dvorních pravidel — a vlastní vůle, která ji jednou postaví proti samotné koruně.</p>
+          <p class="tl2-desc">Přišla na svět 27. listopadu 1768 jako dcera hannoverského generála von Linsingen. Vyrůstala ve světě dvorních pravidel – a vlastní vůle, která ji jednou postaví proti samotné koruně.</p>
         </div>
         <div class="tl2-node" aria-hidden="true"><div class="tl2-dot"></div></div>
         <div class="tl2-media">
           <figure class="framed cb">
             <div class="tl2-imgbox duo"><img src="images/Karolina%20Meineke/1702066.jpg" alt="Dobový reliéf mladé Karoliny von Linsingen"></div>
           </figure>
-          <p class="cap"><b>Dobový reliéf</b> — profil Karoliny Meineke</p>
+          <p class="cap"><b>Dobový reliéf</b> – profil Karoliny Meineke</p>
         </div>
       </div>
 
-      <!-- 1790 — setkání -->
+      <!-- 1790 –setkání -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">1790</div>
         <div class="tl2-card fu">
@@ -2690,20 +2682,20 @@ body{font-weight:400}
         <div class="tl2-node" aria-hidden="true"><div class="tl2-dot"></div></div>
         <div class="tl2-media">
           <figure class="framed cb">
-            <div class="tl2-imgbox duo"><img src="images/Karolina%20Meineke/Arthur_v._Ramberg_-_Caroline_und_der_Prinz_im_Park_von_Pyrmont.jpg" alt="Caroline a princ v parku v Pyrmontu — rytina Arthura von Ramberg"></div>
+            <div class="tl2-imgbox duo"><img src="images/Karolina%20Meineke/Arthur_v._Ramberg_-_Caroline_und_der_Prinz_im_Park_von_Pyrmont.jpg" alt="Caroline a princ v parku v Pyrmontu –rytina Arthura von Ramberg"></div>
           </figure>
-          <p class="cap"><b>A. v. Ramberg</b> — Caroline a princ v parku v Pyrmontu</p>
+          <p class="cap"><b>A. v. Ramberg</b> –Caroline a princ v parku v Pyrmontu</p>
         </div>
       </div>
 
-      <!-- 1791 — tajný sňatek -->
+      <!-- 1791 –tajný sňatek -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">1791</div>
         <div class="tl2-card fu">
           <p class="tl2-yr">1791</p>
           <p class="tl2-place">Pyrmont · lesní kaple</p>
-          <h3 class="tl2-name">Tajný sňatek — a vynucený rozchod</h3>
-          <p class="tl2-desc">12. srpna 1791 se tajně vzali. Britský dvůr však sňatek odmítl uznat — nevěsta nebyla rovného stavu — a pod jeho tlakem byli rozloučeni. O rok později se Karolině narodil syn. S Vilémem se už nikdy nesetkala.</p>
+          <h3 class="tl2-name">Tajný sňatek – a vynucený rozchod</h3>
+          <p class="tl2-desc">12. srpna 1791 se tajně vzali. Britský dvůr však sňatek odmítl uznat – nevěsta nebyla rovného stavu – a pod jeho tlakem byli rozloučeni. O rok později se Karolině narodil syn. S Vilémem se už nikdy nesetkala.</p>
           <span class="tl2-fact">Sňatek prohlášen za neplatný</span>
         </div>
         <div class="tl2-node" aria-hidden="true"><div class="tl2-dot"></div></div>
@@ -2711,7 +2703,7 @@ body{font-weight:400}
           <figure class="framed cb">
             <div class="tl2-imgbox duo"><img src="images/Karolina%20Meineke/1814494.jpg" alt="Dobová kresba truchlící ženy se slzou"></div>
           </figure>
-          <p class="cap"><b>Dobová kresba Karoliny Meineke</b> — symbol ztracené lásky</p>
+          <p class="cap"><b>Dobová kresba Karoliny Meineke</b> – symbol ztracené lásky</p>
         </div>
       </div>
 
@@ -2721,15 +2713,15 @@ body{font-weight:400}
         <div class="tl2-card fu">
           <p class="tl2-yr">Nový začátek</p>
           <p class="tl2-place">Berlín → Morava</p>
-          <h3 class="tl2-name">Z von Linsingen — Karolina Meineke</h3>
-          <p class="tl2-desc">Po čase se Karolina provdala za lékaře Adolfa Meineke a přijala jméno, pod nímž ji bude znát Morava. Začíná druhý život — tišší, ale svobodnější než ten u dvora.</p>
+          <h3 class="tl2-name">Z von Linsingen –Karolina Meineke</h3>
+          <p class="tl2-desc">Po čase se Karolina provdala za lékaře Adolfa Meineke a přijala jméno, pod nímž ji bude znát Morava. Začíná druhý život – tišší, ale svobodnější než ten u dvora.</p>
         </div>
         <div class="tl2-node" aria-hidden="true"><div class="tl2-dot"></div></div>
         <div class="tl2-media">
           <figure class="framed cb">
             <div class="tl2-imgbox duo"><img src="images/Karolina%20Meineke/Adolf%20Meineke.jpg" alt="Dobový portrét Adolfa Meineke"></div>
           </figure>
-          <p class="cap"><b>Adolf Meineke</b> — Karolinin manžel</p>
+          <p class="cap"><b>Adolf Meineke</b> –Karolinin manžel</p>
         </div>
       </div>
 
@@ -2738,16 +2730,16 @@ body{font-weight:400}
         <p class="tl2-yr">Blansko</p>
         <p class="tl2-place">Jižní Morava</p>
         <h3 class="tl2-name">Domov daleko od dvora</h3>
-        <p class="tl2-desc">Rodina zakotvila na jižní Moravě. Karolinina dcera Henrietta se provdala za Carla Teubnera, správce blanenských železáren. V kraji uprostřed lesů mohla být konečně prostě člověkem — ne utajovaným tajemstvím koruny.</p>
+        <p class="tl2-desc">Rodina zakotvila na jižní Moravě. Karolinina dcera Henrietta se provdala za Carla Teubnera, správce blanenských železáren. V kraji uprostřed lesů mohla být konečně prostě člověkem – ne utajovaným tajemstvím koruny.</p>
       </div>
 
-      <!-- 1815 — smrt -->
+      <!-- 1815 –smrt -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">1815</div>
         <div class="tl2-card fu">
           <p class="tl2-yr">1815</p>
           <p class="tl2-place">Blansko · kostel sv. Martina</p>
-          <h3 class="tl2-name">Tichý konec — a počátek legendy</h3>
+          <h3 class="tl2-name">Tichý konec – a počátek legendy</h3>
           <p class="tl2-desc">31. ledna 1815 Karolina Meineke umírá v Blansku ve věku 46 let. Pohřbena je u kostela sv. Martina. Náhrobek dodnes nese nápis, který historie dvě století tajila: „první žena anglického krále Viléma IV.“</p>
           <a href="https://mapy.com/s/gulokazobu" target="_blank" rel="noopener" class="tl2-fact tl2-cta tl2-map">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 4.5a2.5 2.5 0 010 5z"/></svg>
@@ -2759,18 +2751,18 @@ body{font-weight:400}
           <figure class="framed cb">
             <div class="tl2-imgbox duo"><img src="images/Karolina%20Meineke/img31458.jpg" alt="Náhrobek Caroline Meineke u kostela sv. Martina v Blansku"></div>
           </figure>
-          <p class="cap"><b>Blansko, dnes</b> — náhrobek Caroline Meineke</p>
+          <p class="cap"><b>Blansko, dnes</b> – náhrobek Caroline Meineke</p>
         </div>
       </div>
 
-      <!-- 2026 — návrat -->
+      <!-- 2026 –návrat -->
       <div class="tl2-row">
         <div class="tl2-yearbg" aria-hidden="true">2026</div>
         <div class="tl2-card fu">
           <p class="tl2-yr">2026</p>
           <p class="tl2-place">Divadlo na Orlí · Brno</p>
           <h3 class="tl2-name">Příběh se vrací na jeviště</h3>
-          <p class="tl2-desc">Po více než dvou stoletích zaznívá zapomenutý osud znovu — v hudbě, světle a zpěvu. Premiéra 10. září 2026.</p>
+          <p class="tl2-desc">Po více než dvou stoletích zaznívá zapomenutý osud znovu – v hudbě, světle a zpěvu. Premiéra 10. září 2026.</p>
           <a href="https://goout.net/cs/pribeh-utajene-kralovny/ezqadri/" target="_blank" rel="noopener" class="tl2-fact tl2-cta">Koupit vstupenky →</a>
         </div>
         <div class="tl2-node" aria-hidden="true"><div class="tl2-dot"></div></div>
@@ -2778,7 +2770,7 @@ body{font-weight:400}
           <figure class="framed cb">
             <div class="tl2-imgbox duo"><img src="images/Ze%20zkoušek/681698866_18356977465238100_8274879372593078023_n.jpg" alt="Záběr ze zkoušek muzikálu Příběh utajené královny"></div>
           </figure>
-          <p class="cap"><b>Ze zkoušek</b> — muzikál Příběh utajené královny</p>
+          <p class="cap"><b>Ze zkoušek</b> – muzikál Příběh utajené královny</p>
         </div>
       </div>
 
@@ -2797,27 +2789,33 @@ body{font-weight:400}
       <div class="articles-title">
         <span class="lr"><span class="li" id="clanky-h"><em>Články</em></span></span>
       </div>
-      <p class="fu d1" style="margin-top:1rem;max-width:560px;color:var(--pm);font-size:.9rem">Výběr z článků a textů, které o Karolině Meineke vyšly v médiích — a přibližují její skutečný, dlouho zapomenutý životní osud.</p>
+      <p class="fu d1" style="margin-top:1rem;max-width:560px;color:var(--pm);font-size:.9rem">Výběr z článků a textů, které o Karolině Meineke vyšly v médiích – a přibližují její skutečný, dlouho zapomenutý životní osud.</p>
     </div>
 
     <div class="art-grid">
       <article class="art-card fu">
-        <p class="art-tag">Medium · Historie</p>
-        <h3 class="art-title">Lenka Potučková: Karolina, Charlotta, Dorothea Meineke — královna z Blanska</h3>
-        <p class="art-excerpt">Příběh Karoliny Meineke, ženy, která se provinčně vymanila z dějinných rolí a přesto zůstala skrytou královnou v paměti Brna.</p>
-        <a href="https://medium.seznam.cz/clanek/lenka-potuckova-karolina-charlotta-dorothea-meineke-kralovna-z-blanska-189836" target="_blank" rel="noopener" class="art-more">Číst článek <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 11l-7-7-1.41 1.41L16.17 11H5v2h11.17l-5.58 5.59L12 20l7-7z"/></svg></a>
+        <a href="https://medium.seznam.cz/clanek/lenka-potuckova-karolina-charlotta-dorothea-meineke-kralovna-z-blanska-189836" target="_blank" rel="noopener" class="art-link">
+          <p class="art-tag">Medium · Historie</p>
+          <h3 class="art-title">Lenka Potučková: Karolina, Charlotta, Dorothea Meineke – královna z Blanska</h3>
+          <p class="art-excerpt">Příběh Karoliny Meineke, ženy, která se provinčně vymanila z dějinných rolí a přesto zůstala skrytou královnou v paměti Brna.</p>
+          <span class="art-more">Číst článek <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 11l-7-7-1.41 1.41L16.17 11H5v2h11.17l-5.58 5.59L12 20l7-7z"/></svg></span>
+        </a>
       </article>
       <article class="art-card fu d1">
-        <p class="art-tag">Žena-in · Osud</p>
-        <h3 class="art-title">Špatně se zamilovala a ještě hůř vdala: kdyby se Karolina Meineke stala anglickou královnou...</h3>
-        <p class="art-excerpt">Alternativní historie, ve které by královna Viktorie možná nikdy nepoznala svou nástupkyni jako tajnou manželku.</p>
-        <a href="https://zena-in.cz/clanek/spatne-se-zamilovala-a-jeste-hur-vdala-kdyby-se-karolina-meineke-stala-anglickou-kralovnou-nejspis-by-historie-kralovnu-viktorii-vubec-neznala" target="_blank" rel="noopener" class="art-more">Číst článek <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 11l-7-7-1.41 1.41L16.17 11H5v2h11.17l-5.58 5.59L12 20l7-7z"/></svg></a>
+        <a href="https://zena-in.cz/clanek/spatne-se-zamilovala-a-jeste-hur-vdala-kdyby-se-karolina-meineke-stala-anglickou-kralovnou-nejspis-by-historie-kralovnu-viktorii-vubec-neznala" target="_blank" rel="noopener" class="art-link">
+          <p class="art-tag">Žena-in · Osud</p>
+          <h3 class="art-title">Špatně se zamilovala a ještě hůř vdala: kdyby se Karolina Meineke stala anglickou královnou...</h3>
+          <p class="art-excerpt">Alternativní historie, ve které by královna Viktorie možná nikdy nepoznala svou nástupkyni jako tajnou manželku.</p>
+          <span class="art-more">Číst článek <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 11l-7-7-1.41 1.41L16.17 11H5v2h11.17l-5.58 5.59L12 20l7-7z"/></svg></span>
+        </a>
       </article>
       <article class="art-card fu d2">
-        <p class="art-tag">Stoplusjednička · Drama</p>
-        <h3 class="art-title">Tajná choť anglického krále: kdo donutil Karolinu Meineke k rozvodu?</h3>
-        <p class="art-excerpt">Článek mapuje skrytý dramatický rozměr vztahu Karoliny Meineke a jejího anglického prince — příběh zapomenutý v královských archivech.</p>
-        <a href="https://www.stoplusjednicka.cz/tajna-chot-anglickeho-krale-kdo-donutil-karolinu-meineke-k-rozvodu" target="_blank" rel="noopener" class="art-more">Číst článek <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 11l-7-7-1.41 1.41L16.17 11H5v2h11.17l-5.58 5.59L12 20l7-7z"/></svg></a>
+        <a href="https://www.stoplusjednicka.cz/tajna-chot-anglickeho-krale-kdo-donutil-karolinu-meineke-k-rozvodu" target="_blank" rel="noopener" class="art-link">
+          <p class="art-tag">Stoplusjednička · Drama</p>
+          <h3 class="art-title">Tajná choť anglického krále: kdo donutil Karolinu Meineke k rozvodu?</h3>
+          <p class="art-excerpt">Článek mapuje skrytý dramatický rozměr vztahu Karoliny Meineke a jejího anglického prince – příběh zapomenutý v královských archivech.</p>
+          <span class="art-more">Číst článek <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 11l-7-7-1.41 1.41L16.17 11H5v2h11.17l-5.58 5.59L12 20l7-7z"/></svg></span>
+        </a>
       </article>
     </div>
   </div>
@@ -2881,7 +2879,7 @@ body{font-weight:400}
     <div class="footer-grid">
       <div>
         <p class="ft-brand-name"><em>Příběh</em> utajené královny</p>
-        <p>Muzikál inspirovaný skutečnými událostmi.<br>Žena, která milovala krále — a jejíž příběh se vrací.</p>
+        <p>Muzikál inspirovaný skutečnými událostmi.<br>Žena, která milovala krále – a jejíž příběh se vrací.</p>
         <p style="margin-top:1rem">Premiéra 10. září 2026<br>Divadlo na Orlí, Orlí 19, Brno</p>
         <p class="footer-thanks">Děkujeme <a href="https://www.zamek-rajec.cz/cs" target="_blank" rel="noopener">Státnímu zámku Rájec nad Svitavou</a> a <a href="https://www.muzeum-blanenska.cz/" target="_blank" rel="noopener">Muzeu Blanenska</a> za laskavé poskytnutí prostor k fotografování.</p>
       </div>
@@ -2893,7 +2891,7 @@ body{font-weight:400}
           <li><a href="#hudba">Hudba</a></li>
           <li><a href="#autor">Tvůrci</a></li>
           <li><a href="#obsazeni">Obsazení</a></li>
-          <li><a href="#timeline">Životní osudy</a></li>
+          <li><a href="#timeline">Časová osa</a></li>
           <li><a href="#clanky">Články</a></li>
         </ul>
       </div>
@@ -2904,7 +2902,7 @@ body{font-weight:400}
           <li><a href="https://df.jamu.cz/" target="_blank">DF JAMU Brno</a></li>
           <li><a href="https://www.instagram.com/divadlonaorli/" target="_blank">Instagram</a></li>
           <li><a href="https://www.facebook.com/DivadloNaOrli/" target="_blank">Facebook</a></li>
-          <li><a href="https://goout.net/cs/pribeh-utajene-kralovny/ezqadri/" target="_blank">GoOut — Vstupenky</a></li>
+          <li><a href="https://goout.net/cs/pribeh-utajene-kralovny/ezqadri/" target="_blank">GoOut –Vstupenky</a></li>
         </ul>
       </div>
     </div>
@@ -2914,7 +2912,7 @@ body{font-weight:400}
       <p>Ateliér muzikálového herectví Sylvy Talpové a Aleše Kohouta</p>
     </div>
 
-    <p class="footer-disclaimer">Tento web je nezávislá prezentace vytvořená na podporu muzikálu — nejde o oficiální web Divadla na Orlí ani Divadelní fakulty JAMU. Oficiální informace najdete na <a href="https://divadlonaorli.jamu.cz/" target="_blank" rel="noopener">divadlonaorli.jamu.cz</a> a <a href="https://df.jamu.cz/" target="_blank" rel="noopener">df.jamu.cz</a>.</p>
+    <p class="footer-disclaimer">Tento web je nezávislá prezentace vytvořená na podporu muzikálu – nejde o oficiální web Divadla na Orlí ani Divadelní fakulty JAMU. Oficiální informace najdete na <a href="https://divadlonaorli.jamu.cz/" target="_blank" rel="noopener">divadlonaorli.jamu.cz</a> a <a href="https://df.jamu.cz/" target="_blank" rel="noopener">df.jamu.cz</a>.</p>
   </div>
 </footer>
 
@@ -2923,10 +2921,13 @@ body{font-weight:400}
 /* ── STICKY NAV ─────────────────────────── */
 const nav=document.getElementById('nav');
 const fmBtn=document.getElementById('fm');
+const navTicket=document.getElementById('nav-ticket');
 window.addEventListener('scroll',()=>{
   const s=window.scrollY>50;
   nav.classList.toggle('s',s);
-  if(fmBtn) fmBtn.classList.toggle('show',window.scrollY>window.innerHeight*0.55);
+  const showAfterScroll=window.scrollY>window.innerHeight*0.55;
+  if(fmBtn) fmBtn.classList.toggle('show',showAfterScroll);
+  if(navTicket) navTicket.classList.toggle('show',showAfterScroll);
 },{passive:true});
 
 /* ── MENU ───────────────────────────────── */
@@ -3073,25 +3074,6 @@ window.addEventListener('load',()=>{
   requestAnimationFrame(update);
 })();
 
-/* ── HERO PETALS ───────────────────────────────────────────── */
-(function(){
-  const wrap=document.querySelector('.hero-petals');
-  if(!wrap || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  const N = innerWidth<700 ? 6 : 11;
-  const cols=['rgba(237,228,211,.85)','rgba(237,228,211,.62)','rgba(212,175,106,.5)','rgba(125,51,72,.7)','rgba(237,228,211,.72)'];
-  for(let i=0;i<N;i++){
-    const p=document.createElement('span'); p.className='petal';
-    const s=6+Math.random()*8;
-    p.style.left=(Math.random()*100).toFixed(1)+'%';
-    p.style.width=s.toFixed(1)+'px';
-    p.style.height=(s*1.15).toFixed(1)+'px';
-    p.style.background=cols[Math.floor(Math.random()*cols.length)];
-    p.style.setProperty('--dx',(Math.random()*100-50).toFixed(0)+'px');
-    // slower, gently unfolding fall (22–40s)
-    p.style.animation=`petalFall ${(22+Math.random()*18).toFixed(1)}s linear ${(-Math.random()*40).toFixed(1)}s infinite`;
-    wrap.appendChild(p);
-  }
-})();
 
 /* ── GALLERY: mosaic entrance reveal ─────────────────────────── */
 (function(){
@@ -3140,7 +3122,7 @@ window.addEventListener('load',()=>{
   });
 })();
 
-/* ── NA JEVIŠTI — cinematic reel (active-centering · drag · lightbox) ── */
+/* ── NA JEVIŠTI –cinematic reel (active-centering · drag · lightbox) ── */
 (function(){
   const reel=document.getElementById('najevisti');
   if(!reel) return;
@@ -3186,7 +3168,7 @@ window.addEventListener('load',()=>{
   if(prevBtn) prevBtn.addEventListener('click',()=>step(-1));
   if(nextBtn) nextBtn.addEventListener('click',()=>step(1));
 
-  /* drag-to-scroll (pointer) — suppress the click that follows a real drag */
+  /* drag-to-scroll (pointer) –suppress the click that follows a real drag */
   let down=false,moved=false,sx=0,sl=0;
   track.addEventListener('pointerdown',e=>{
     if(e.pointerType==='mouse'&&e.button!==0) return;
